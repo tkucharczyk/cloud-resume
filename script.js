@@ -37,5 +37,30 @@ async function fetchVisitCount() {
     }
 }
 
+// Funkcja do wysyłania żądania POST do API w celu zwiększenia liczby wizyt
+async function registerVisit() {
+    const apiEndpoint = 'https://790kk9cdeb.execute-api.eu-central-1.amazonaws.com/visit'; // Zamień na URL swojego API
+
+    try {
+        // Wyślij żądanie POST
+        const response = await fetch(apiEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({}) // Opcjonalnie: dodaj payload, jeśli wymagane
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        console.log('Visit registered successfully');
+    } catch (error) {
+        console.error('Error registering visit:', error);
+    }
+}
+
 // Wywołaj funkcję po załadowaniu strony
-window.onload = fetchVisitCount;
+window.onload = function () {
+    registerVisit(); // Wywołanie metody POST do zarejestrowania wizyty
+    fetchVisitCount(); // Pobranie aktualnej liczby odwiedzin
+};
