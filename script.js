@@ -14,3 +14,28 @@ document.getElementById("downloadPdf").addEventListener("click", function () {
     // Generowanie PDF
     html2pdf().set(options).from(element).save();
 });
+
+async function fetchVisitCount() {
+    const apiEndpoint = 'https://790kk9cdeb.execute-api.eu-central-1.amazonaws.com/visit'; // Zamień na URL swojego API
+
+    try {
+        // Wykonaj zapytanie do API
+        const response = await fetch(apiEndpoint);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Pobierz dane jako JSON
+        const data = await response.json();
+
+        // Zaktualizuj licznik w HTML
+        const visitCount = data.VisitCount; // Dopasuj do struktury odpowiedzi Twojego API
+        document.getElementById('visit-counter').innerText = `Visits: ${visitCount}`;
+    } catch (error) {
+        console.error('Error fetching visit count:', error);
+        document.getElementById('visit-counter').innerText = 'Error loading visits';
+    }
+}
+
+// Wywołaj funkcję po załadowaniu strony
+window.onload = fetchVisitCount;
