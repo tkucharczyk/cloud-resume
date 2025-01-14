@@ -16,7 +16,7 @@ document.getElementById("downloadPdf").addEventListener("click", function () {
 });
 
 async function fetchVisitCount() {
-    const apiEndpoint = 'https://790kk9cdeb.execute-api.eu-central-1.amazonaws.com/visit'; // Zamień na URL swojego API
+    const apiEndpoint = 'https://790kk9cdeb.execute-api.eu-central-1.amazonaws.com/visit'; 
 
     try {
         // Wykonaj zapytanie do API
@@ -29,7 +29,7 @@ async function fetchVisitCount() {
         const data = await response.json();
 
         // Zaktualizuj licznik w HTML
-        const visitCount = data.VisitCount; // Dopasuj do struktury odpowiedzi Twojego API
+        const visitCount = data.VisitCount; 
         document.getElementById('visit-counter').innerText = `Visits: ${visitCount}`;
     } catch (error) {
         console.error('Error fetching visit count:', error);
@@ -39,14 +39,14 @@ async function fetchVisitCount() {
 
 // Funkcja do wysyłania żądania POST do API w celu zwiększenia liczby wizyt
 async function registerVisit() {
-    const apiEndpoint = 'https://790kk9cdeb.execute-api.eu-central-1.amazonaws.com/visit'; // Zamień na URL swojego API
+    const apiEndpoint = 'https://790kk9cdeb.execute-api.eu-central-1.amazonaws.com/visit'; 
 
     try {
         // Wyślij żądanie POST
         const response = await fetch(apiEndpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({}) // Opcjonalnie: dodaj payload, jeśli wymagane
+            body: JSON.stringify({}) 
         });
 
         if (!response.ok) {
